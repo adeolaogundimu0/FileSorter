@@ -1,6 +1,13 @@
 import os, shutil
 
-path = r"C:\Users\adeol\Downloads"
+def get_downloads_path():
+    """Get the Downloads folder path for any user."""
+    if os.name == 'nt':  # Windows
+        return os.path.join(os.environ['USERPROFILE'], 'Downloads')
+    else:  # macOS/Linux
+        return os.path.join(os.environ['HOME'], 'Downloads')
+    
+path = get_downloads_path()
 
 def dirCreate():
     folders = ['Pictures', 'Videos', 'Audio', 'Documents', 'Code', 'Compressed', 'Applications', 'Other']
